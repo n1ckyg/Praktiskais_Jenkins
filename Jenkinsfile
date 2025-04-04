@@ -66,4 +66,6 @@ def python_dependencies (){
     git branch: 'main', poll: false, url: 'https://github.com/n1ckyg/python-greetings.git'
     echo "Checking folder fol necessary files...."
     bat "dir"
+    echo "Installing Python"
+    pip install -r requirements.txt
 }
