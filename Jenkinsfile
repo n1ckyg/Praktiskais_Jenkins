@@ -98,6 +98,7 @@ def deploy (String environment, int port){
     echo "Launching pm2 processes.."
     bat "node_modules\\.bin\\pm2 start app.py --name greetings-app-${environment} -- --port ${port}"
     bat "node_modules\\.bin\\pm2 list"
+    echo "${environment}, ${port}"
 }
 
 def test (String environment){
