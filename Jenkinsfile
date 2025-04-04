@@ -21,7 +21,9 @@ pipeline {
     
         stage('tests-on-dev'){
             steps{
-                echo "Testing dev..."
+                script{
+                    test("dev")
+                }
             }
         }
 
@@ -35,7 +37,9 @@ pipeline {
 
         stage('tests-on-staging'){
             steps{
-                echo "Testing staging..."
+                script{
+                    test("staging")
+                }
             }
         }
 
@@ -49,7 +53,9 @@ pipeline {
 
         stage('tests-on-preprod'){
             steps{
-                echo "Testing preprod..."
+                script{
+                    test("preprod")
+                }
             }
         }
 
@@ -63,7 +69,9 @@ pipeline {
 
         stage('tests-on-prod'){
             steps{
-                echo "Testing prod..."
+               script{
+                    test("prod")
+                }
             }
         }
     }
@@ -90,6 +98,17 @@ def deploy (String environment, int port){
     echo "Launching pm2 processes.."
     bat "node_modules\\.bin\\pm2 start app.py --name greetings-app-${environment} -- --port ${port}"
     bat "node_modules\\.bin\\pm2 list"
+}
+
+def test (String environment){
+    echo "Cloning python-greetings repository"
+    git branch: 'main', poll: false, url: 'https://github.com/n1ckyg/course-js-api-framework.git'
+    echo "Installing NPM"
+    bat "npm install"
+    echo "Checking folder for necessary files...."
+    bat "dir"
+    echo "Testing in progress.."
+    bat "npm run greetings greetings_${environment}"
 }
 
 //bat "node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
