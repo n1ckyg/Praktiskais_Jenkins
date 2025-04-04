@@ -11,7 +11,7 @@ pipeline {
             }
         }
     
-        stage('deploy-to-'${environment}){
+        stage("deploy-to-${environment}"){
             steps{
                 script{
                     deploy("dev", 7001)
