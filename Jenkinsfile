@@ -84,7 +84,7 @@ def deploy (String environment, int port){
     echo "Checking folder fol necessary files...."
     bat "dir"
     echo "Delete existing pm2 processes.."
-    bat "pm2 delete greetings-app-${environment} & set "errorlevel=0""
+    bat "pm2 delete greetings-app-${environment} & EXIT /B 0"
     echo "Launching pm2 processes.."
     bat "pm2 start app.py --name greetings-app-${environment} --port ${port}"
 }
