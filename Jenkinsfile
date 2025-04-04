@@ -88,7 +88,7 @@ def deploy (String environment, int port){
     echo "Delete existing pm2 processes.."
     bat "node_modules\\.bin\\pm2 delete greetings-app-${environment} & EXIT /B 0"
     echo "Launching pm2 processes.."
-    bat "node_modules\\.bin\\pm2 start app.py --name greetings-app-${environment} --port ${port}"
+    bat "node_modules\\.bin\\pm2 start app.py --name greetings-app-${environment} ----port ${port}"
 }
 
 //bat "node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
