@@ -6,7 +6,7 @@ pipeline {
         stage('install-pip-deps'){
             steps{
                 script{
-                    python_dependencies
+                    python_dependencies()
                 }
             }
         }
