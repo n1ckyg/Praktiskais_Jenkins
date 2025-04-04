@@ -13,7 +13,9 @@ pipeline {
     
         stage('deploy-to-dev'){
             steps{
-                echo "Deploying to dev"
+                script{
+                    deploy("dev", 7001)
+                }
             }
         }
     
@@ -25,7 +27,9 @@ pipeline {
 
         stage('deploy-to-staging'){
             steps{
-                echo "Deploying to staging..."
+                script{
+                    deploy("staging", 7002)
+                }
             }
         }
 
@@ -37,7 +41,9 @@ pipeline {
 
         stage('deploy-to-preprod'){
             steps{
-                echo "Deploying to preprod..."
+                script{
+                    deploy("preprod", 7003)
+                }
             }
         }
 
@@ -49,7 +55,9 @@ pipeline {
 
         stage('deploy-to-prod'){
             steps{
-                echo "Deploying to prod..."
+                script{
+                    deploy("prod", 7004)
+                }
             }
         }
 
@@ -62,10 +70,21 @@ pipeline {
 }       
 
 def python_dependencies (){
-    echo "Cloning repository"
+    echo "Cloning python-greetings repository"
     git branch: 'main', poll: false, url: 'https://github.com/n1ckyg/python-greetings.git'
     echo "Checking folder fol necessary files...."
     bat "dir"
     echo "Installing Python"
     bat "pip install -r requirements.txt"
+}
+
+def deploy (){
+    echo "Cloning python-greetings repository"
+    git branch: 'main', poll: false, url: 'https://github.com/n1ckyg/python-greetings.git'
+    echo "Checking folder fol necessary files...."
+    bat "dir"
+    echo "Delete existing pm2 processes.."
+    bat "pm2 delete greetings-app-${environment} & set "errorlevel=0""
+    echo "Launching pm2 processes.."
+    bat "pm2 start app.py --name greetings-app-${environment} --port ${port}"
 }
