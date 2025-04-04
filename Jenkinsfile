@@ -82,8 +82,8 @@ def python_dependencies (){
 def deploy (String environment, int port){
     echo "Cloning python-greetings repository"
     git branch: 'main', poll: false, url: 'https://github.com/n1ckyg/python-greetings.git'
-    echo "Installing NPM"
-    bat "npm install"
+    //echo "Installing NPM"
+    //bat "npm install"
     echo "Checking folder for necessary files...."
     bat "dir"
     echo "Delete existing pm2 processes.."
