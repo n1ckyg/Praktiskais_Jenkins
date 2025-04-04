@@ -76,14 +76,13 @@ def python_dependencies (){
     bat "dir"
     echo "Installing Python"
     bat "pip install -r requirements.txt"
-    bat "python app.py"
 }
 
 def deploy (String environment, int port){
     echo "Cloning python-greetings repository"
     git branch: 'main', poll: false, url: 'https://github.com/n1ckyg/python-greetings.git'
-    //echo "Installing NPM"
-    //bat "npm install"
+    echo "Installing NPM"
+    bat "npm install"
     echo "Checking folder for necessary files...."
     bat "dir"
     echo "Delete existing pm2 processes.."
