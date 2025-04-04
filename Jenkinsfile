@@ -11,7 +11,7 @@ pipeline {
             }
         }
     
-        stage("deploy-to-dev"){
+        stage('deploy-to-dev'){
             steps{
                 script{
                     deploy("dev", 7001)
@@ -27,7 +27,7 @@ pipeline {
             }
         }
 
-        stage("deploy-to-staging"){
+        stage('deploy-to-staging'){
             steps{
                 script{
                     deploy("staging", 7002)
@@ -43,7 +43,7 @@ pipeline {
             }
         }
 
-        stage("deploy-to-preprod"){
+        stage('deploy-to-preprod'){
             steps{
                 script{
                     deploy("preprod", 7003)
@@ -59,7 +59,7 @@ pipeline {
             }
         }
 
-        stage("deploy-to-prod"){
+        stage('deploy-to-prod'){
             steps{
                 script{
                     deploy("prod", 7004)
