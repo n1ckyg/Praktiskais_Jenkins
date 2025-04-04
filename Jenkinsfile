@@ -78,7 +78,7 @@ def python_dependencies (){
     bat "pip install -r requirements.txt"
 }
 
-def deploy (){
+def deploy (String environment, int port){
     echo "Cloning python-greetings repository"
     git branch: 'main', poll: false, url: 'https://github.com/n1ckyg/python-greetings.git'
     echo "Checking folder fol necessary files...."
