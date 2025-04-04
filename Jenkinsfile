@@ -6,7 +6,7 @@ pipeline {
         stage('install-pip-deps'){
             steps{
                 script{
-                    python-dependencies
+                    python_dependencies
                 }
             }
         }
@@ -61,7 +61,7 @@ pipeline {
     }
 }       
 
-def python-dependencies (){
+def python_dependencies (){
     echo "Cloning repository"
     git branch: 'main', poll: false, url: 'https://github.com/n1ckyg/python-greetings.git'
     echo "Checking folder fol necessary files...."
