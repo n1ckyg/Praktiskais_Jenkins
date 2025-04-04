@@ -107,7 +107,7 @@ def test (String environment){
     bat "npm install"
     echo "Checking folder for necessary files...."
     bat "dir"
-    echo "Testing in progress.."
+    echo "Running tests for ${environment} environment"
     bat "npm run greetings greetings_${environment}"
 }
 
