@@ -67,5 +67,5 @@ def python_dependencies (){
     echo "Checking folder fol necessary files...."
     bat "dir"
     echo "Installing Python"
-    pip install -r requirements.txt
+    bat "pip install -r requirements.txt"
 }
