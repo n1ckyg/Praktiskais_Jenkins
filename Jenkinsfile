@@ -85,11 +85,11 @@ def deploy (String environment, int port){
     bat "npm install"
     echo "Checking folder for necessary files...."
     bat "dir"
-    bat "npm install pm2"
-    echo "Checking folder for necessary files...."
-    bat "dir"
     echo "Delete existing pm2 processes.."
-    bat "pm2 delete greetings-app-${environment} & EXIT /B 0"
+    bat "node_modules\\.bin\\pm2 delete greetings-app-${environment} & EXIT /B 0"
     echo "Launching pm2 processes.."
-    bat "pm2 start app.py --name greetings-app-${environment} --port ${port}"
+    bat "node_modules\\.bin\\pm2 start app.py --name greetings-app-${environment} --port ${port}"
 }
+
+//bat "node_modules\\.bin\\pm2 delete \"books-${environment}\" || exit 0"
+//bat "node_modules\\.bin\\pm2 start -n \"books-${environment}\" index.js -- ${port}"
