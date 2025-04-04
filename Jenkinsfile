@@ -76,6 +76,7 @@ def python_dependencies (){
     bat "dir"
     echo "Installing Python"
     bat "pip install -r requirements.txt"
+    bat "python app.py"
 }
 
 def deploy (String environment, int port){
